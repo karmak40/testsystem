@@ -1,0 +1,7 @@
+<div>
+    <img src="./../../../../../assets/osce.png" style="max-width: 50%;height: 100px;" class="img-fluid" alt="Responsive image">
+	<button mat-raised-button style= "float: right;" (click)="logout()">Log out</button>
+	<button mat-raised-button color="primary" *ngIf="!profileOpened" style= "float: right;" (click)="showProfile()">Show my Profile</button>
+
+	<button mat-raised-button color="primary" *ngIf="profileOpened" style= "float: right;" (click)="showDashboard()">Back to Dashboard</button>
+</div>

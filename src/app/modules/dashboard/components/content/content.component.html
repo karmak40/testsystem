@@ -1,0 +1,63 @@
+<mat-toolbar>
+	Open Positions</mat-toolbar>
+
+<button mat-icon-button>
+	<mat-icon aria-label="Add new position">add_circle_outline</mat-icon>
+</button>
+<span> Add new Position </span>
+
+
+<div>
+
+
+	<mat-list>
+
+		<div *ngFor="let position of database">
+
+			<div class="row">
+				<div class="col-1">
+					<button mat-icon-button>
+						<mat-icon>chevron_right</mat-icon>
+					</button>
+				</div>
+				<div class="col-5">
+					<mat-list-item>{{position.name}}</mat-list-item>
+				</div>
+				<div class="col-6">
+				
+				</div>
+			</div>
+			<mat-divider></mat-divider>
+		</div>
+
+	</mat-list>
+
+</div>
+
+
+<!--
+<mat-accordion class="example-headers-align">
+
+
+	<mat-expansion-panel *ngFor="let position of database" hideToggle>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				{{position.name}}
+			</mat-panel-title>
+			<mat-panel-description>
+				Type the country name
+				<mat-icon>map</mat-icon>
+			</mat-panel-description>
+		</mat-expansion-panel-header>
+
+		<mat-action-row>
+			<button *ngIf="!database.indexOf(position)==0" mat-button color="warn" (click)="prevStep()">Previous</button>
+			<button mat-button color="primary" (click)="nextStep()">Next</button>
+		</mat-action-row>
+	</mat-expansion-panel>
+
+</mat-accordion>
+
+-->
+
+<div style="height: 20px;"></div>
