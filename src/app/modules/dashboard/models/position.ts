@@ -7,4 +7,5 @@ export class Position {
     public name: string;
     public candidats: Array<Candidat>;
     public reviewers: Array<Reviewer>
+
 }

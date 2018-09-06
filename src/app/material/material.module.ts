@@ -18,6 +18,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
         MatDividerModule,
         MatNativeDateModule, 
         MatExpansionModule,
+        MatTooltipModule,
         NgbModule
     ],
     exports: [
@@ -53,6 +55,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
         MatNativeDateModule,
         MatDatepickerModule,
         MatExpansionModule,
+        MatTooltipModule,
         MatDividerModule,
         MatTreeModule,
         NgbModule

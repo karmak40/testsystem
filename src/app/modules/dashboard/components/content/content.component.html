@@ -16,16 +16,33 @@
 
 			<div class="row">
 				<div class="col-1">
-					<button mat-icon-button>
-						<mat-icon>chevron_right</mat-icon>
-					</button>
+					
+					<mat-list-item>
+						<button mat-icon-button>
+							<mat-icon>chevron_right</mat-icon>
+						</button>
+					</mat-list-item>
+
 				</div>
-				<div class="col-5">
+				<div class="col-3">
 					<mat-list-item>{{position.name}}</mat-list-item>
 				</div>
-				<div class="col-6">
-				
+				<div class="col-4">
+
+					<mat-list-item>
+						David Jonson, Mariko LO, Samiule El Jackson...
+					</mat-list-item>
+
 				</div>
+
+				<div class="col-3">
+					<mat-list-item>
+						<button mat-icon-button matTooltipPosition="right" matTooltip="Delete Position">
+							<mat-icon>remove_circle_outline</mat-icon>
+						</button>
+					</mat-list-item>
+				</div>
+
 			</div>
 			<mat-divider></mat-divider>
 		</div>
