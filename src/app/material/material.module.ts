@@ -20,6 +20,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+
 
 @NgModule({
     imports: [
@@ -39,6 +43,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
         MatNativeDateModule, 
         MatExpansionModule,
         MatTooltipModule,
+        MatSortModule,
+        MatTableModule,
+        MatPaginatorModule,
         NgbModule
     ],
     exports: [
@@ -58,6 +65,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
         MatTooltipModule,
         MatDividerModule,
         MatTreeModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatTableModule,
         NgbModule
     ],
 })

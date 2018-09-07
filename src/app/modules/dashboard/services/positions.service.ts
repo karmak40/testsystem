@@ -39,7 +39,8 @@ export class PositionsService {
       reviever1.id = '3242344231312';
       reviever1.name = 'Dambledor';
       position1.reviewers.push(reviever1);
-
+      position1.openDate = new Date();
+      position1.active = true;
       database.push(position1);
 
       var position2 = new Position();
@@ -54,8 +55,12 @@ export class PositionsService {
       var reviever2 = new Reviewer();
       reviever2.id = '3242fsdf312';
       reviever2.name = 'Robert Maslow';
+      position2.active = true;
       position2.reviewers.push(reviever2);
 
+      position2.openDate = new Date()
+      position2.openDate;
+      position2.active = false;
       database.push(position2);
       database.push(position2);
       database.push(position2);

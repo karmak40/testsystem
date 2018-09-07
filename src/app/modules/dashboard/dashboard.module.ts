@@ -9,6 +9,8 @@ import { DashboardFooterComponent } from './components/dashboard-footer/dashboar
 import { ProfileComponent } from './components/profile/profile.component';
 import { ContentComponent } from './components/content/content.component';
 import { PositionsService } from './services/positions.service';
+import { PositionDetailComponent } from './components/position-detail/position-detail.component';
+import { PositionAddComponent } from './components/position-add/position-add.component';
 
 @NgModule({
   imports: [
@@ -23,7 +25,9 @@ import { PositionsService } from './services/positions.service';
     DashboardHeaderComponent,
     DashboardFooterComponent,
     ProfileComponent,
-    ContentComponent
+    ContentComponent,
+    PositionDetailComponent,
+    PositionAddComponent
   ],
   providers: [PositionsService]
 })
