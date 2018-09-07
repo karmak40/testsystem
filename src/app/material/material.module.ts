@@ -24,6 +24,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
     imports: [
@@ -46,6 +47,7 @@ import {MatSortModule} from '@angular/material/sort';
         MatSortModule,
         MatTableModule,
         MatPaginatorModule,
+        MatStepperModule,
         NgbModule
     ],
     exports: [
@@ -64,6 +66,7 @@ import {MatSortModule} from '@angular/material/sort';
         MatExpansionModule,
         MatTooltipModule,
         MatDividerModule,
+        MatStepperModule,
         MatTreeModule,
         MatPaginatorModule,
         MatSortModule,

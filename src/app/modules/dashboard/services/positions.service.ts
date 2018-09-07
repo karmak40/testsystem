@@ -64,6 +64,18 @@ export class PositionsService {
       database.push(position2);
       database.push(position2);
       database.push(position2);
+      database.push(position2);
+      database.push(position2);
+      database.push(position2);
+
+      database.push(position2);
+      database.push(position2);
+      database.push(position2);
+
+      database.push(position2);
+      database.push(position2);
+      database.push(position2);
+
 
 
 

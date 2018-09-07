@@ -8,25 +8,15 @@
 
 	</mat-grid-tile>
 
-	<!--left space-->
-	<mat-grid-tile [colspan]="1" [rowspan]="5">
-	</mat-grid-tile>
-   
-	
-	
-
-	<mat-grid-tile [colspan]="3" [rowspan]="7">
-		<!--Content is here-->
-	<div class="content-inside-grid">
-		<router-outlet></router-outlet>
+	<div>
+		<mat-grid-tile [colspan]="5" [rowspan]="7">
+			<!--Content is here-->
+			<div class="content-inside-grid">
+				<router-outlet></router-outlet>
+			</div>
+		</mat-grid-tile>
 	</div>
 
-
-	</mat-grid-tile>
-
-
 	<!--right space-->
-	<mat-grid-tile [colspan]="1" [rowspan]="5">
-	</mat-grid-tile>
 
 </mat-grid-list>

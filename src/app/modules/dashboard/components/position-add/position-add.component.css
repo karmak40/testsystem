@@ -1,0 +1,23 @@
+.example-part-width {
+   width: 45rem;
+}
+
+.example-part2-width {
+   width: 65rem;
+}
+
+
+table {
+   width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.filter_line {
+    font-size: 14px;
+    width: 50rem;  
+}
+
+

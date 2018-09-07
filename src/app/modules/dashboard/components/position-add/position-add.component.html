@@ -1,5 +1,160 @@
 <button mat-button (click)="goBack()">Go Back</button>
 
-<p>
-  position-add works!
-</p>
+
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+	<mat-step [stepControl]="firstFormGroup">
+		<form style="padding-left: 10px;" [formGroup]="firstFormGroup">
+			<ng-template matStepLabel>Fill out basic info about position</ng-template>
+
+
+			<div class="row">
+				<mat-form-field class="example-part-width">
+					<input matInput placeholder="Number" formControlName="number" required>
+					<mat-icon matSuffix>edit</mat-icon>
+				</mat-form-field>
+			</div>
+			<div class="row">
+				<mat-form-field class="example-part-width">
+					<input matInput placeholder="Name" formControlName="name" required>
+					<mat-icon matSuffix>edit</mat-icon>
+				</mat-form-field>
+			</div>
+
+
+			<div class="row">
+				<mat-form-field class="example-part2-width">
+					<textarea matInput mat-autosize="true" placeholder="About this interview"> The day has come: You found an awesome job on Monster, applied, and got a call from a real-live human being who wants to meet with you. Congrats! But your work has only just begun. 
+Even the smartest and most qualified job seekers need to prepare for their job interview. Why, you ask? Interview skills are learned, and there are no second chances to make a great first impression. These 10 interview tips will teach you how to answer interview questions and convince the hiring manager that you are the one for the job. 
+Practice good nonverbal communication It's about demonstrating confidence: standing straight, making eye contact and connecting with a firm handshake. That first nonverbal impression can be a great beginning—or quick ending—to your interview.
+					</textarea>
+				</mat-form-field>
+			</div>
+
+			<div class="row">
+				<mat-form-field class="example-part2-width">
+					<textarea matInput mat-autosize="true" placeholder="Company Information"> With 57 participating States in North America, Europe and Asia, the OSCE – the Organization for Security and Co-operation in Europe – is the world’s largest regional security organization. The OSCE works for stability, peace and democracy for more than a billion people, through political dialogue about shared values and through practical work that aims to make a lasting difference.
+						The OSCE is a forum for political dialogue on a wide range of security issues and a platform for joint action to improve the lives of individuals and communities. The organization uses a comprehensive approach to security that encompasses the politico-military, economic and environmental, and human dimensions. Through this approach, and with its inclusive membership, the OSCE helps bridge differences and build trust between states by co-operating on conflict prevention, 
+						crisis management and post-conflict rehabilitation.	With its Institutions, expert units and network of field operations, the OSCE addresses issues that have an impact on our common security, including arms control, terrorism, good governance, energy security, human trafficking, democratization, media freedom and national minorities.
+					</textarea>
+				</mat-form-field>
+			</div>
+
+			<div>
+				<button color="primary" mat-raised-button matStepperNext>Next</button>
+			</div>
+
+		</form>
+	</mat-step>
+
+	<mat-step [stepControl]="secondFormGroup">
+		<form [formGroup]="secondFormGroup">
+
+			<ng-template matStepLabel>Fill out candidats </ng-template>
+
+
+			<div class="row" style="padding-left: 20px;">
+				<div class="col-4">
+					<mat-form-field>
+						<input matInput placeholder="Name" formControlName="name" required>
+					</mat-form-field>
+				</div>
+				<div class="col-4">
+					<mat-form-field class="example-full-width">
+						<input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
+						<mat-icon matSuffix>email</mat-icon>
+						<mat-hint>Errors appear instantly!</mat-hint>
+						<mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+							Please enter a valid email address
+						</mat-error>
+						<mat-error *ngIf="emailFormControl.hasError('required')">
+							Email is <strong>required</strong>
+						</mat-error>
+					</mat-form-field>
+				</div>
+				<div class="col-3">
+					<mat-form-field class="example-full-width">
+						<input type="tel" formControlName="phone" matInput placeholder="Telephone">
+						<mat-icon matSuffix>phone</mat-icon>
+					</mat-form-field>
+				</div>
+				<div class="col-1">
+					<button mat-icon-button>
+						<mat-icon aria-label="Add new position">add_circle_outline</mat-icon>
+					</button>
+				</div>
+			</div>
+
+
+			<div style="padding-left: 20px; padding-right: 20px;">
+
+				<mat-form-field class="filter_line">
+					<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+				</mat-form-field>
+
+				<div class="mat-elevation-z8">
+
+					<table mat-table matSort [dataSource]="dataSource">
+
+						<!-- id Column -->
+						<ng-container matColumnDef="id">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+							<td mat-cell *matCellDef="let element"> {{element.id}} </td>
+						</ng-container>
+
+						<!-- Name Column -->
+						<ng-container matColumnDef="name">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+							<td mat-cell *matCellDef="let element"> <button mat-button>{{element.name}}</button>
+							</td>
+						</ng-container>
+
+						<!-- email Column -->
+						<ng-container matColumnDef="email">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+							<td mat-cell *matCellDef="let element"> {{element.email}} </td>
+						</ng-container>
+
+						<!-- phone Column -->
+						<ng-container matColumnDef="phone">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+							<td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+						</ng-container>
+
+
+						<!-- Open Date Column -->
+						<ng-container matColumnDef="_">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+							<td mat-cell *matCellDef="let element">
+								<button mat-icon-button matTooltip="Remove position" matTooltipPosition="right">
+									<mat-icon (click)="addPosition()">remove_circle_outline</mat-icon>
+								</button> </td>
+						</ng-container>
+
+
+						<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+						<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+					</table>
+
+					<mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+
+				</div>
+
+
+			</div>
+
+			<div style="padding-left: 20px; padding-top: 20px;">
+				<button mat-button matStepperPrevious>Back</button>
+				<button mat-button matStepperNext>Next</button>
+			</div>
+
+		</form>
+	</mat-step>
+	<mat-step>
+		<ng-template matStepLabel>Done</ng-template>
+		You are now done.
+		<div>
+			<button mat-button matStepperPrevious>Back</button>
+			<button mat-button (click)="stepper.reset()">Reset</button>
+		</div>
+	</mat-step>
+</mat-horizontal-stepper>
