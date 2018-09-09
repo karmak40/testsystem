@@ -5,6 +5,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ContentComponent } from './components/content/content.component';
 import { PositionDetailComponent } from './components/position-detail/position-detail.component';
 import { PositionAddComponent } from './components/position-add/position-add.component';
+import { CandidatDetailComponent } from './components/candidat-detail/candidat-detail.component';
 
 
 const routes: Routes = [
@@ -20,12 +21,16 @@ const routes: Routes = [
         component: ProfileComponent
       },
       {
-        path: 'position-detail',
-        component: PositionDetailComponent
-      },
-      {
         path: 'position-add',
         component: PositionAddComponent
+      },
+      {
+        path: 'position-detail',
+        component: PositionDetailComponent,
+      },
+      {
+        path: 'candidat-detail',
+        component: CandidatDetailComponent
       },
     ]
   }

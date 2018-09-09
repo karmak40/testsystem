@@ -8,6 +8,7 @@ import { Position } from '../../models/position';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatSort, MatTable, ErrorStateMatcher } from '@angular/material';
 import { Candidat } from '../../models/candidat';
+import { Test } from '../../models/test';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -32,9 +33,11 @@ export class PositionAddComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
 
-  public database: Array<Candidat>;
+  public database: Array<Candidat> = new Array<Candidat>();
   displayedColumns: string[] = ['id', 'name', 'email', 'phone', '_'];
   dataSource: MatTableDataSource<Candidat>;
+
+  public questions: Array<Test> = []
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -53,7 +56,7 @@ export class PositionAddComponent implements OnInit {
     });
     this.secondFormGroup = this._formBuilder.group({
       name: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
+      email: ['', Validators.required],
       phone: ['']
     });
 
@@ -74,6 +77,46 @@ export class PositionAddComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim()
+  }
+
+  addCandidat() {
+    console.log('Calling add')
+    var candidat = new Candidat();
+    candidat.email = this.secondFormGroup.value.email;
+    candidat.name = this.secondFormGroup.value.name;
+    candidat.phone = this.secondFormGroup.value.phone;
+
+    //this.database.push(candidat);
+
+    this.dataSource.data.push(candidat);
+    this.dataSource.data = this.dataSource.data.slice();
+    console.log(this.dataSource.data);
+    this.table.renderRows();
+  }
+
+  deleteCandidat(candidat: Candidat) {
+    var index = this.dataSource.data.indexOf(candidat);
+    if (index > -1) {
+      this.dataSource.data.splice(index, 1);
+    }
+    this.dataSource.data = this.dataSource.data.slice();
+    this.table.renderRows();
+    console.log(this.dataSource.data);
+  }
+
+  addQuestions(question: string, time: string) {
+
+     var test = new Test();
+     test.name = question;
+     test.time = Number.parseInt(time);
+     test.id = '0';
+     this.questions.push(test);
+     console.log (test);
+
+  }
+
+  public savePosition() {
+    this.router.navigate(['../dashboard'], { relativeTo: this.activatedRoute });
   }
 
 }

@@ -1,8 +1,13 @@
-<button mat-button (click)="goBack()">Go Back</button>
+<mat-toolbar>
+		Creating Position
+</mat-toolbar>
 
+<button mat-button (click)="goBack()">Go Back</button>
 
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
 	<mat-step [stepControl]="firstFormGroup">
+
+
 		<form style="padding-left: 10px;" [formGroup]="firstFormGroup">
 			<ng-template matStepLabel>Fill out basic info about position</ng-template>
 
@@ -44,6 +49,8 @@ Practice good nonverbal communication It's about demonstrating confidence: stand
 			</div>
 
 		</form>
+
+		
 	</mat-step>
 
 	<mat-step [stepControl]="secondFormGroup">
@@ -51,8 +58,7 @@ Practice good nonverbal communication It's about demonstrating confidence: stand
 
 			<ng-template matStepLabel>Fill out candidats </ng-template>
 
-
-			<div class="row" style="padding-left: 20px;">
+			<div class="row" style="padding-left: 20px; padding-right: 40px;">
 				<div class="col-4">
 					<mat-form-field>
 						<input matInput placeholder="Name" formControlName="name" required>
@@ -78,9 +84,9 @@ Practice good nonverbal communication It's about demonstrating confidence: stand
 					</mat-form-field>
 				</div>
 				<div class="col-1">
-					<button mat-icon-button>
-						<mat-icon aria-label="Add new position">add_circle_outline</mat-icon>
-					</button>
+
+					<!-- <button mat-raised-button (click)="addCandidat()">Add new position</button> -->
+					<button mat-fab color="primary" (click)="addCandidat()">Add</button>
 				</div>
 			</div>
 
@@ -126,7 +132,7 @@ Practice good nonverbal communication It's about demonstrating confidence: stand
 							<th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
 							<td mat-cell *matCellDef="let element">
 								<button mat-icon-button matTooltip="Remove position" matTooltipPosition="right">
-									<mat-icon (click)="addPosition()">remove_circle_outline</mat-icon>
+									<mat-icon (click)="deleteCandidat(element)">remove_circle_outline</mat-icon>
 								</button> </td>
 						</ng-container>
 
@@ -150,11 +156,61 @@ Practice good nonverbal communication It's about demonstrating confidence: stand
 		</form>
 	</mat-step>
 	<mat-step>
+		<ng-template matStepLabel>Add questions</ng-template>
+
+		<div class="row">
+			<div class="col-6">
+				<mat-form-field style="width: 90%;">
+					<textarea rows="1" matAutosizeMinRows=1 matAutosizeMaxRows=5 #question matInput placeholder="Type a question"></textarea>
+				</mat-form-field>
+			</div>
+
+			<div class="col-3">
+				<button mat-fab color="primary" (click)="addQuestions(question.value, time.value)">Add</button>
+			</div>
+			<div class="col-3">
+				<mat-form-field>
+					<mat-select #time placeholder="Available time">
+						<mat-option value="60">
+							60
+						</mat-option>
+						<mat-option value="90">
+							90
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="row">
+			<mat-toolbar>
+				Questions:
+			</mat-toolbar>
+		</div>
+		<div class="row">
+			<div class="col" style="width: 100%;">
+				<mat-list>
+					<span *ngFor="let item of questions">
+						<mat-list-item>{{item.name}}</mat-list-item>
+						<mat-divider></mat-divider>
+					</span>
+
+					<mat-divider></mat-divider>
+				</mat-list>
+			</div>
+		</div>
+		<div style="padding-left: 20px; padding-top: 20px;">
+			<button mat-button matStepperPrevious>Back</button>
+			<button mat-button matStepperNext>Next</button>
+		</div>
+
+
+	</mat-step>
+	<mat-step>
 		<ng-template matStepLabel>Done</ng-template>
 		You are now done.
 		<div>
 			<button mat-button matStepperPrevious>Back</button>
-			<button mat-button (click)="stepper.reset()">Reset</button>
+			<button mat-button (click)="savePosition()">Save</button>
 		</div>
 	</mat-step>
 </mat-horizontal-stepper>
