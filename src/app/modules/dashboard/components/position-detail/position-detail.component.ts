@@ -10,6 +10,7 @@ import { MatTableDataSource, MatSort, MatTable, ErrorStateMatcher } from '@angul
 import { Candidat } from '../../models/candidat';
 import { Test } from '../../models/test';
 import { Reviewer } from '../../models/reviever';
+import { BigPictureComponent } from "../big-picture/big-picture.component";
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -39,7 +40,7 @@ export class PositionDetailComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'email', '_'];
   dataSource: MatTableDataSource<Candidat>;
 
-  public databaseR: Array<Candidat> = new Array<Candidat>();
+  public databaseR: Array<Reviewer> = new Array<Reviewer>();
   displayedColumnsR: string[] = ['id', 'name', 'email', '_'];
   dataSourceR: MatTableDataSource<Reviewer>;
 

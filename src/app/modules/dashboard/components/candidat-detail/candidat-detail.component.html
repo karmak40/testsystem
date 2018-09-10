@@ -1,3 +1,48 @@
-<p>
-  candidat-detail works!
-</p>
+<mat-toolbar>
+	Candidat Detail: Tom Cruse
+</mat-toolbar>
+<button mat-button (click)="goBack()">Go Back</button>
+
+<div style="padding-left: 40px; padding-top:20px;">
+
+	<div class="row" style="width: 100%;">
+		<div class="col-6">
+			<div class="row" style="width: 100%;" *ngFor="let test of tests">
+				<div class="row" style="width: 100%;">{{test.name}}</div>
+				<div class="row" style="width: 100%;">
+
+					<textarea readonly matInput>{{test.answer}}</textarea>
+
+				</div>
+			
+			</div>
+		</div>
+		<div class="col-6">
+
+			<div class="row">
+				<div class="col">
+					Question
+				</div>
+				<div class="col" *ngFor="let item of viewers">
+					{{item.name}}
+				</div>
+			</div>
+
+			<div *ngFor="let test of tests">
+				<div class="row">
+					<div class="col">{{test.nummer}}</div>
+
+					<div class="col" *ngFor="let viewer of viewers">
+						{{getCorrectRate(test, viewer)}}
+					</div>
+
+				</div>
+
+				<mat-divider></mat-divider>
+			</div>
+
+
+		</div>
+	</div>
+
+</div>

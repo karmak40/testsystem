@@ -12,6 +12,7 @@ import { PositionsService } from './services/positions.service';
 import { PositionDetailComponent } from './components/position-detail/position-detail.component';
 import { PositionAddComponent } from './components/position-add/position-add.component';
 import { CandidatDetailComponent } from './components/candidat-detail/candidat-detail.component';
+import { BigPictureComponent } from './components/big-picture/big-picture.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { CandidatDetailComponent } from './components/candidat-detail/candidat-d
     ContentComponent,
     PositionDetailComponent,
     PositionAddComponent,
-    CandidatDetailComponent
+    CandidatDetailComponent,
+    BigPictureComponent
   ],
   providers: [PositionsService]
 })
