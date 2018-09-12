@@ -79,10 +79,10 @@ export class PositionDetailComponent implements OnInit {
     this.dataSource.sort = this.sort;
 
     this.dataSourceR = new MatTableDataSource<Reviewer>(this.databaseR)
-  // this.dataSourceR.paginator = this.paginator;
-  //  this.dataSourceR.sort = this.sort;
+    // this.dataSourceR.paginator = this.paginator;
+    //  this.dataSourceR.sort = this.sort;
 
-    this.dataSource.filterPredicate = (data: Candidat, filter: string) => data.name.indexOf(filter) !== -1 || data.id.indexOf(filter) !== -1;
+    this.dataSource.filterPredicate = (data: Candidat, filter: string) => data.name.indexOf(filter) !== -1 || data.number.indexOf(filter) !== -1;
   }
 
   goBack() {
@@ -94,7 +94,7 @@ export class PositionDetailComponent implements OnInit {
   }
 
   candidatDetail() {
-    this.router.navigate(['../candidat-detail'], { relativeTo: this.activatedRoute }); 
+    this.router.navigate(['../candidat-detail'], { relativeTo: this.activatedRoute });
   }
 
   addCandidat() {
@@ -127,12 +127,12 @@ export class PositionDetailComponent implements OnInit {
 
     var test = new Test();
     test.name = question;
-    test.time = Number.parseInt(time);
-    test.id = '0';
+    test.time = this.toDateTime(Number.parseInt(time));
+    test.id = 0;
     this.questions.push(test);
-    console.log (test);
+    console.log(test);
 
- }
+  }
 
   addReviever() {
     console.log('Calling add')
@@ -157,6 +157,17 @@ export class PositionDetailComponent implements OnInit {
     this.dataSourceR.data = this.dataSourceR.data.slice();
     this.table.renderRows();
     console.log(this.dataSourceR.data);
+  }
+
+
+  getSeconds(date: Date) {
+    return date.getTime() / 1000;
+  }
+
+  toDateTime(minutes: number) {
+    var t = new Date(1970, 0, 1); // Epoch
+    t.setMinutes(minutes);
+    return t;
   }
 
 }

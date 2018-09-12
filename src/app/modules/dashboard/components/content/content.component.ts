@@ -21,7 +21,7 @@ export class ContentComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<any>;
 
   public database: Array<Position>;
-  displayedColumns: string[] = ['id', 'name', 'active', '_'];
+  displayedColumns: string[] = ['number', 'name', 'status', '_'];
   dataSource: MatTableDataSource<Position>;
 
 
@@ -31,7 +31,7 @@ export class ContentComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
 
-    this.dataSource.filterPredicate = (data: Position, filter: string) => data.name.indexOf(filter) !== -1 || data.id.indexOf(filter) !== -1 ;
+    this.dataSource.filterPredicate = (data: Position, filter: string) => data.name.indexOf(filter) !== -1 || data.number.indexOf(filter) !== -1 ;
 
    // this.dataSource.filterPredicate = (data, filter) => {
      // (data.name.indexOf(filter) !== -1 ||

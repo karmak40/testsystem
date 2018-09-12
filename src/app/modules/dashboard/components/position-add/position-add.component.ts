@@ -67,7 +67,7 @@ export class PositionAddComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
 
-    this.dataSource.filterPredicate = (data: Candidat, filter: string) => data.name.indexOf(filter) !== -1 || data.id.indexOf(filter) !== -1;
+    this.dataSource.filterPredicate = (data: Candidat, filter: string) => data.name.indexOf(filter) !== -1 || data.number.indexOf(filter) !== -1;
 
   }
 
@@ -108,8 +108,8 @@ export class PositionAddComponent implements OnInit {
 
      var test = new Test();
      test.name = question;
-     test.time = Number.parseInt(time);
-     test.id = '0';
+     test.time = this.toDateTime (Number.parseInt(time));
+     test.id = 0;
      this.questions.push(test);
      console.log (test);
 
@@ -117,6 +117,12 @@ export class PositionAddComponent implements OnInit {
 
   public savePosition() {
     this.router.navigate(['../dashboard'], { relativeTo: this.activatedRoute });
+  }
+
+  toDateTime(minutes: number) {
+    var t = new Date(1970, 0, 1); // Epoch
+    t.setMinutes(minutes);
+    return t;
   }
 
 }

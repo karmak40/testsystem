@@ -13,6 +13,8 @@ import { PositionDetailComponent } from './components/position-detail/position-d
 import { PositionAddComponent } from './components/position-add/position-add.component';
 import { CandidatDetailComponent } from './components/candidat-detail/candidat-detail.component';
 import { BigPictureComponent } from './components/big-picture/big-picture.component';
+import { UrlService } from './services/url-service';
+import { CandidatService } from './services/candidat.service';
 
 @NgModule({
   imports: [
@@ -33,6 +35,6 @@ import { BigPictureComponent } from './components/big-picture/big-picture.compon
     CandidatDetailComponent,
     BigPictureComponent
   ],
-  providers: [PositionsService]
+  providers: [PositionsService, PositionsService, UrlService, CandidatService]
 })
 export class DashboardModule { }

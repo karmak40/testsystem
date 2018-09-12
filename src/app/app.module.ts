@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './/app-routing.module';
 import { MaterialModule } from './material/material.module';
+import { HttpClientModule } from '@angular/common/http'; 
 
 import { LoginModule } from './modules/login/login.module';
 
@@ -27,6 +28,7 @@ import { LoginModule } from './modules/login/login.module';
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
     BrowserAnimationsModule,
     ReactiveFormsModule, 
+    HttpClientModule,
     MaterialModule,
     NgbModule,
     FormsModule,
