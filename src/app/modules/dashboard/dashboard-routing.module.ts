@@ -21,11 +21,11 @@ const routes: Routes = [
         component: ProfileComponent
       },
       {
-        path: 'position-add',
+        path: 'position-add/:id',
         component: PositionAddComponent
       },
       {
-        path: 'position-detail',
+        path: 'position-detail/:id',
         component: PositionDetailComponent,
       },
       {

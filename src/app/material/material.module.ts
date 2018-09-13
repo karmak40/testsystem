@@ -26,6 +26,7 @@ import {MatSortModule} from '@angular/material/sort';
 
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
     imports: [
@@ -48,6 +49,7 @@ import {MatTabsModule} from '@angular/material/tabs';
         MatSortModule,
         MatTableModule,
         MatPaginatorModule,
+        MatProgressBarModule,
         MatStepperModule,
         MatTabsModule,
         NgbModule
@@ -68,6 +70,7 @@ import {MatTabsModule} from '@angular/material/tabs';
         MatExpansionModule,
         MatTooltipModule,
         MatDividerModule,
+        MatProgressBarModule,
         MatStepperModule,
         MatTreeModule,
         MatPaginatorModule,

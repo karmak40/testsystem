@@ -1,6 +1,7 @@
-<mat-toolbar>
-	Position Detail: CV2342 Head of Recruting Department
+<mat-toolbar *ngIf="loader">
+	{{position.name}}
 </mat-toolbar>
+<mat-progress-bar [hidden]="loader" mode="buffer"></mat-progress-bar>
 <button mat-button (click)="goBack()">Go Back</button>
 
 <mat-tab-group style="padding-left: 20px; padding-right: 20px;">
@@ -46,9 +47,12 @@
 					<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 				</mat-form-field>
 
+				
+
+
 				<div class="mat-elevation-z8">
 
-					<table mat-table matSort [dataSource]="dataSource">
+					<table mat-table matSort [dataSource]="dataSourceCandidats">
 
 						<!-- id Column -->
 						<ng-container matColumnDef="id">
@@ -95,6 +99,8 @@
 				</div>
 
 
+
+
 			</div>
 
 
@@ -139,7 +145,7 @@
 
 				<div class="mat-elevation-z8">
 
-					<table mat-table matSort [dataSource]="dataSourceR">
+					<table mat-table matSort [dataSource]="dataSourceViewers">
 
 						<!-- id Column -->
 						<ng-container matColumnDef="id">
@@ -188,7 +194,7 @@
 	</mat-tab>
 
 
-	<mat-tab label="Questions">
+	<mat-tab label="Questions" style="padding-top: 10px;">
 
 		<div class="row">
 			<div class="col-6">

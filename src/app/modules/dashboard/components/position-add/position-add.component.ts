@@ -9,6 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatSort, MatTable, ErrorStateMatcher } from '@angular/material';
 import { Candidat } from '../../models/candidat';
 import { Test } from '../../models/test';
+import { CandidatService } from '../../services/candidat.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -46,7 +47,7 @@ export class PositionAddComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private _formBuilder: FormBuilder) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private _formBuilder: FormBuilder, candidatService : CandidatService) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -72,7 +73,7 @@ export class PositionAddComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['../dashboard'], { relativeTo: this.activatedRoute });
+    this.router.navigate(['../../dashboard'], { relativeTo: this.activatedRoute });
   }
 
   applyFilter(filterValue: string) {

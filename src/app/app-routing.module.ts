@@ -4,7 +4,8 @@ import { LoginModule } from './modules/login/login.module';
 
 
 const routes: Routes = [
-  { path: '', loadChildren: () => LoginModule }
+  { path: '', loadChildren: () => LoginModule },
+  { path: '*', loadChildren: () => LoginModule }
 ];
 
 @NgModule({
