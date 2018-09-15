@@ -203,9 +203,9 @@ export class PositionDetailComponent implements OnInit {
     return date.getTime() / 1000;
   }
 
-  toDateTime(minutes: number) {
+  toDateTime(seconds: number) {
     var t = new Date(1970, 0, 1); // Epoch
-    t.setMinutes(minutes);
+    t.setMinutes(seconds);
     return t;
   }
 

@@ -9,22 +9,26 @@ export class Position {
     public openDate: Date;
     public closeDate: Date;
     public number: string;
+    public companyInfo: string;
+    public about: string;
     public candidats: Array<Candidat>;
     public viewers: Array<Reviewer>
 
 
     static parse(json: any): Position {
-        return new Position(json.Id, json.Name, json.Status, json.OpenDate, json.CloseDate, json.Number, json.Candidats.map(cand => Candidat.parse(cand)), 
+        return new Position(json.Id, json.Name, json.Status, json.OpenDate, json.CloseDate, json.Number, json.CompanyInfo, json.About, json.Candidats.map(cand => Candidat.parse(cand)), 
         json.Viewers.map(viewer => Reviewer.parse(viewer)));
      }
 
-     constructor(id?: number, name?: string, status?: string, openDate?: number, closeDate?: number, number?: string,  candidats?: Candidat[], viewer?: Reviewer[] ) {
+     constructor(id?: number, name?: string, status?: string, openDate?: number, closeDate?: number, number?: string, companyInfo? : string, about?: string,  candidats?: Candidat[], viewer?: Reviewer[] ) {
         this.id = id;
         this.name = name;
         this.status = status;
         this.openDate = this.toDateTime(openDate);
         this.closeDate = this.toDateTime(closeDate);
         this.number = number;
+        this.companyInfo = companyInfo;
+        this.about = about;
         this.candidats = candidats;
     }
 

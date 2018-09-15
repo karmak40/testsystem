@@ -11,14 +11,13 @@ export class CandidatService {
 
   constructor(private http: HttpClient, private url: UrlService) { }
 
-  addCandidat(json: string) {
+  public addCandidat(json: string) {
 
-    return this.http.put<Position>('./api/position/', json,
+    return this.http.put<void>('./api/candidat/', json,
       { headers: this.url.getHttpHeaders() })
       .pipe(
-        tap(result => {
-          console.log(result);
-          return result;
+        tap(_ => {
+          console.log("successfull");
         }),
         catchError((err, caught) => {
           console.log('Error saving position: {0} - {1}', err['status'], err['message']);

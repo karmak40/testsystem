@@ -16,6 +16,7 @@ import { BigPictureComponent } from './components/big-picture/big-picture.compon
 import { UrlService } from './services/url-service';
 import { CandidatService } from './services/candidat.service';
 
+
 @NgModule({
   imports: [
     CommonModule,

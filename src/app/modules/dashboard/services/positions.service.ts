@@ -8,11 +8,6 @@ import { Reviewer } from '../models/reviever';
 import { HttpClient } from '@angular/common/http';
 import { UrlService } from './url-service';
 import { retryWhen, delayWhen, tap, catchError } from 'rxjs/operators';
-//import 'rxjs/add/operator/retryWhen';
-//import 'rxjs/add/operator/delay';
-//import 'rxjs/add/operator/take';
-//import 'rxjs/add/operator/concat';
-//import 'rxjs/add/observable/throw';
 
 
 @Injectable()
@@ -92,14 +87,13 @@ export class PositionsService {
   }
 
 
-  addPosition(json: string): Observable<number> {
+  updatePosition(json: string): Observable<void> {
 
-    return this.http.put<number>('/api/position/', json,
+    return this.http.post<void>('/api/position/', json,
       { headers: this.url.getHttpHeaders() })
       .pipe(
         tap(result => {
-          console.log(result);
-          return result;
+
         }),
         catchError((err, caught) => {
           console.log('Error saving position: {0} - {1}', err['status'], err['message']);
@@ -146,7 +140,6 @@ export class PositionsService {
       { headers: this.url.getHttpHeaders() })
       .pipe(
         tap(result => {
-          console.log(result);
           return result;
         }),
         catchError((err, caught) => {
