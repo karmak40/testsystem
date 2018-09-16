@@ -76,6 +76,8 @@ export class PositionDetailComponent implements OnInit {
       instruction: [''],
       openDate: [''],
       closeDate: [''],
+      openDatepickerTime: [''],
+      closeDatepickerTime: [''],
       about: [''],
     });
     this.secondFormGroup = this._formBuilder.group({
@@ -147,29 +149,39 @@ export class PositionDetailComponent implements OnInit {
 
   loadPositionCommonDetail() {
 
-   // this.firstFormGroup.patchValue(this.position); 
-    
-    this.firstFormGroup.setValue({ 
+    // this.firstFormGroup.patchValue(this.position); 
+
+    this.firstFormGroup.setValue({
       openDate: this.toDateTime(this.position.openDate),
+      closeDate: this.toDateTime(this.position.closeDate),
+      openDatepickerTime: this.GetStringTime(this.position.openDate),
+      closeDatepickerTime: this.GetStringTime(this.position.closeDate),
       name: this.position.name,
       number: this.position.number,
       companyInfo: this.position.companyInfo,
       instruction: this.position.instruction,
       about: this.position.about,
-      closeDate: this.toDateTime(this.position.closeDate)  
     });
-
   }
 
-  updateCommonInfo(){
+  getTime(date: Date): string {
+    console.log(date)
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    console.log(hours, minutes);
+    return hours + ':' + minutes;
+  }
+
+  updateCommonInfo() {
 
     this.position.about = this.firstFormGroup.value.about
     this.position.companyInfo = this.firstFormGroup.value.companyInfo
     this.position.name = this.firstFormGroup.value.name
     this.position.instruction = this.firstFormGroup.value.instruction
     this.position.number = this.firstFormGroup.value.number
-    this.position.openDate =  this.getSeconds(this.firstFormGroup.value.openDate)
+    this.position.openDate = this.getSeconds(this.firstFormGroup.value.openDate)
     this.position.closeDate = this.getSeconds(this.firstFormGroup.value.closeDate)
+
 
     JSON.stringify(this.position);
     this.showLoader();
@@ -197,8 +209,8 @@ export class PositionDetailComponent implements OnInit {
     candidat.email = this.secondFormGroup.value.email;
     candidat.name = this.secondFormGroup.value.name;
     candidat.phone = this.secondFormGroup.value.phone;
-    candidat.expiredDate = this.getSeconds(this.secondFormGroup.value.expiredDate);
     candidat.invitationDate = this.getSeconds(this.secondFormGroup.value.invitationDate);
+    candidat.expiredDate = this.getSeconds(this.secondFormGroup.value.expiredDate);
     candidat.positionId = this.position.id;
 
     console.log(candidat)
@@ -310,4 +322,32 @@ export class PositionDetailComponent implements OnInit {
     this.loader = true;
   }
 
+
+  public GetStringTime(seconds: number) {
+    var t = new Date(1970, 0, 1); // Epoch
+    t.setSeconds(seconds);
+
+    var hours = (t.getHours() + 2)
+    var minutes = t.getMinutes();
+    var strHour = '';
+    var strMinut = '';
+
+    if (hours < 10) {
+      strHour = '0' + hours;
+    } else {
+      strHour = (hours).toString();
+    }
+
+    if (minutes < 10) {
+      strMinut = '0' + minutes;
+    } else {
+      strMinut = (minutes).toString();
+    }
+
+    var str = strHour + ':' + strMinut;
+
+    return str;
+
+
+  }
 }

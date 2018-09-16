@@ -319,27 +319,54 @@
 					</mat-form-field>
 				</div>
 
+
 				<div class="row">
 
-					<div class="col-3">
+					<div class="col">
 
 						<mat-form-field>
 							<input matInput [matDatepicker]="openDatepicker" formControlName="openDate" placeholder="Open Date">
 							<mat-datepicker-toggle matSuffix [for]="openDatepicker"></mat-datepicker-toggle>
 							<mat-datepicker #openDatepicker></mat-datepicker>
 						</mat-form-field>
+
 					</div>
 
-					<div class="col-3">
+					<div class="col">
+
+						<mat-form-field>
+							<input matInput placeholder="Time" formControlName="openDatepickerTime" required>
+							<mat-icon matSuffix>edit</mat-icon>
+						</mat-form-field>
+
+					</div>
+
+				</div>
+
+				<div class="row">
+
+					<div class="col">
 
 						<mat-form-field>
 							<input matInput [matDatepicker]="closeDatepicker" formControlName="closeDate" placeholder="CloseDate Date">
 							<mat-datepicker-toggle matSuffix [for]="closeDatepicker"></mat-datepicker-toggle>
 							<mat-datepicker #closeDatepicker></mat-datepicker>
 						</mat-form-field>
+
+					</div>
+
+					<div class="col">
+
+						<mat-form-field>
+							<input matInput placeholder="Time" formControlName="closeDatepickerTime" required>
+							<mat-icon matSuffix>edit</mat-icon>
+						</mat-form-field>
+
 					</div>
 
 				</div>
+
+
 			</form>
 			<button mat-raised-button (click)="updateCommonInfo()" color="primary">Update</button>
 

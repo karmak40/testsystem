@@ -26,6 +26,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class PositionAddComponent implements OnInit {
 
+  public myValue: string;
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -80,6 +81,8 @@ export class PositionAddComponent implements OnInit {
       instruction: [''],
       openDate: [''],
       closeDate: [''],
+      openDatepickerTime: [''],
+      closeDatepickerTime: [''],
       about: [''],
     });
     this.secondFormGroup = this._formBuilder.group({
@@ -110,8 +113,10 @@ export class PositionAddComponent implements OnInit {
     candidat.email = this.secondFormGroup.value.email;
     candidat.name = this.secondFormGroup.value.name;
     candidat.phone = this.secondFormGroup.value.phone;
+
     candidat.expiredDate = this.getSeconds(this.secondFormGroup.value.expiredDate);
     candidat.invitationDate = this.getSeconds(this.secondFormGroup.value.invitationDate);
+
     candidat.positionId = this.position.id;
 
     console.log (candidat)
@@ -128,7 +133,6 @@ export class PositionAddComponent implements OnInit {
 
     this.dataSourceCandidats.data.push(candidat);
     this.dataSourceCandidats.data = this.dataSourceCandidats.data.slice();
-    console.log(this.dataSourceCandidats.data);
     this.table.renderRows();
 
   }
@@ -140,7 +144,6 @@ export class PositionAddComponent implements OnInit {
     }
     this.dataSourceCandidats.data = this.dataSourceCandidats.data.slice();
     this.table.renderRows();
-    console.log(this.dataSourceCandidats.data);
   }
 
   addTest() {
@@ -179,13 +182,15 @@ export class PositionAddComponent implements OnInit {
 
   public updatePosition() {
 
-    this.position.about = this.firstFormGroup.value.about
-    this.position.companyInfo = this.firstFormGroup.value.companyInfo
-    this.position.name = this.firstFormGroup.value.name
-    this.position.instruction = this.firstFormGroup.value.instruction
-    this.position.number = this.firstFormGroup.value.number
-    this.position.openDate =  this.getSeconds(this.firstFormGroup.value.openDate)
-    this.position.closeDate = this.getSeconds(this.firstFormGroup.value.closeDate)
+    this.position.about = this.firstFormGroup.value.about;
+    this.position.companyInfo = this.firstFormGroup.value.companyInfo;
+    this.position.name = this.firstFormGroup.value.name;
+    this.position.instruction = this.firstFormGroup.value.instruction;
+    this.position.number = this.firstFormGroup.value.number;
+    this.position.openDate = this.getTimeInSeconds(this.firstFormGroup.value.openDatepickerTime, this.firstFormGroup.value.openDate);
+    this.position.closeDate = this.getTimeInSeconds(this.firstFormGroup.value.closeDatepickerTime, this.firstFormGroup.value.closeDate);
+
+    console.log(this.firstFormGroup.value.openDate);
 
     JSON.stringify(this.position);
     this.showLoader();
@@ -223,15 +228,12 @@ export class PositionAddComponent implements OnInit {
     });
   }
 
-  toDateTime(seconds: number) {
+  toDateTime(seconds: number): Date {
     var t = new Date(1970, 0, 1); // Epoch
     t.setSeconds(seconds);
     return t;
   }
 
-  getSeconds(date: Date) {
-    return date.getSeconds()
-  }
 
   private showLoader() {
     this.loader = false;
@@ -239,6 +241,24 @@ export class PositionAddComponent implements OnInit {
 
   private hideLoader() {
     this.loader = true;
+  }
+
+  private getTimeInSeconds(time: string, date: Date): number {
+    var res = time.split(':');
+    var hours = res[0]
+    var minutes = res[1]
+
+    date.setHours(Number.parseInt(hours));
+    date.setMinutes(Number.parseInt(minutes));
+
+    console.log(date);
+   
+    return this.getSeconds(date);
+  }
+
+
+  getSeconds(date: Date) {
+    return date.getTime() / 1000;
   }
 
 }
