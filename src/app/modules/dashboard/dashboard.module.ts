@@ -15,6 +15,8 @@ import { CandidatDetailComponent } from './components/candidat-detail/candidat-d
 import { BigPictureComponent } from './components/big-picture/big-picture.component';
 import { UrlService } from './services/url-service';
 import { CandidatService } from './services/candidat.service';
+import { TestService } from './services/test.service';
+import { ViewerService } from './services/viewer.service';
 
 
 @NgModule({
@@ -36,6 +38,6 @@ import { CandidatService } from './services/candidat.service';
     CandidatDetailComponent,
     BigPictureComponent
   ],
-  providers: [PositionsService, PositionsService, UrlService, CandidatService]
+  providers: [PositionsService, PositionsService, UrlService, CandidatService, TestService, ViewerService]
 })
 export class DashboardModule { }

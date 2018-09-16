@@ -1,35 +1,48 @@
 import { Candidat } from "./candidat";
 import { Reviewer } from "./reviever";
+import { Test } from "./test";
 
 
 export class Position {
     public id: number;
     public name: string;
     public status: string
-    public openDate: Date;
-    public closeDate: Date;
+    public openDate: number;
+    public closeDate: number;
     public number: string;
     public companyInfo: string;
     public about: string;
+    public instruction: string;
     public candidats: Array<Candidat>;
     public viewers: Array<Reviewer>
+    public tests: Array<Test>;
 
 
     static parse(json: any): Position {
-        return new Position(json.Id, json.Name, json.Status, json.OpenDate, json.CloseDate, json.Number, json.CompanyInfo, json.About, json.Candidats.map(cand => Candidat.parse(cand)), 
-        json.Viewers.map(viewer => Reviewer.parse(viewer)));
-     }
+        return new Position(json.Id, json.Name, json.Status, json.OpenDate, json.CloseDate, json.Number, json.CompanyInfo, json.About, json.instruction,
 
-     constructor(id?: number, name?: string, status?: string, openDate?: number, closeDate?: number, number?: string, companyInfo? : string, about?: string,  candidats?: Candidat[], viewer?: Reviewer[] ) {
+            json.Candidats.map(cand => Candidat.parse(cand)),
+            json.Viewers.map(viewer => Reviewer.parse(viewer)),
+            json.Tests.map(test => Test.parse(test)));
+    }
+
+    constructor(id?: number, name?: string, status?: string, openDate?: number, closeDate?: number, number?: string, companyInfo?: string, about?: string, instruction?: string,
+        candidats?: Candidat[],
+        viewer?: Reviewer[],
+        tests?: Test[])
+    {
         this.id = id;
         this.name = name;
         this.status = status;
-        this.openDate = this.toDateTime(openDate);
-        this.closeDate = this.toDateTime(closeDate);
+        this.instruction = instruction;
+        this.openDate = openDate;
+        this.closeDate = closeDate;
         this.number = number;
         this.companyInfo = companyInfo;
         this.about = about;
         this.candidats = candidats;
+        this.viewers = viewer;
+        this.tests = tests
     }
 
     toDateTime(secs) {

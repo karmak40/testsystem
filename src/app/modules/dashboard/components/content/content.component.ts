@@ -28,6 +28,9 @@ export class ContentComponent implements OnInit {
 
 
   ngOnInit() {
+
+    console.log ('ContentComponent')
+
     this.loadPositions();
   }
 

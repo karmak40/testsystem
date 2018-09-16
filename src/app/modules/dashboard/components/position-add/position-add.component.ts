@@ -9,6 +9,7 @@ import { MatTableDataSource, MatSort, MatTable, ErrorStateMatcher, MatStepper } 
 import { Candidat } from '../../models/candidat';
 import { Test } from '../../models/test';
 import { CandidatService } from '../../services/candidat.service';
+import { TestService } from '../../services/test.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -54,6 +55,7 @@ export class PositionAddComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private _formBuilder: FormBuilder,
     private positionService: PositionsService,
+    private testService: TestService, 
     private candidatService: CandidatService) { }
 
   ngOnInit() {
@@ -75,6 +77,9 @@ export class PositionAddComponent implements OnInit {
       number: ['', Validators.required],
       name: ['', Validators.required],
       companyInfo: [''],
+      instruction: [''],
+      openDate: [''],
+      closeDate: [''],
       about: [''],
     });
     this.secondFormGroup = this._formBuilder.group({
@@ -138,19 +143,38 @@ export class PositionAddComponent implements OnInit {
     console.log(this.dataSourceCandidats.data);
   }
 
+  addTest() {
+
+  }
+
   addQuestions(question: string, time: string) {
 
+    this.showLoader();
     var test = new Test();
     test.name = question;
-    test.time = this.toDateTime(Number.parseInt(time));
-    test.id = 0;
+    test.positionId = this.position.id;
+    test.time = 60 * (Number.parseInt(time));
     this.questions.push(test);
-    console.log(test);
+
+    console.log (test);
+
+    this.testService.addTest(JSON.stringify(test)).subscribe(_ => {
+      this.hideLoader();
+    }, (error) => {
+      this.hideLoader();
+      //this.errorMessageOn(error.message)
+      //console.log('error.message');
+      return Observable.throw(new Error(error.status));
+    });
+    
 
   }
 
   public savePosition() {
-    this.router.navigate(['../dashboard'], { relativeTo: this.activatedRoute });
+
+    console.log ('savePositionsavePositionsavePosition');
+
+    this.router.navigate(['../../dashboard'], { relativeTo: this.activatedRoute });
   }
 
   public updatePosition() {
@@ -158,7 +182,10 @@ export class PositionAddComponent implements OnInit {
     this.position.about = this.firstFormGroup.value.about
     this.position.companyInfo = this.firstFormGroup.value.companyInfo
     this.position.name = this.firstFormGroup.value.name
+    this.position.instruction = this.firstFormGroup.value.instruction
     this.position.number = this.firstFormGroup.value.number
+    this.position.openDate =  this.getSeconds(this.firstFormGroup.value.openDate)
+    this.position.closeDate = this.getSeconds(this.firstFormGroup.value.closeDate)
 
     JSON.stringify(this.position);
     this.showLoader();
@@ -203,7 +230,7 @@ export class PositionAddComponent implements OnInit {
   }
 
   getSeconds(date: Date) {
-    return date.getTime() / 1000;
+    return date.getSeconds()
   }
 
   private showLoader() {

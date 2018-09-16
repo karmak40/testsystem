@@ -1,3 +1,4 @@
+import { Rating } from "./rating";
 
 
 export class Reviewer {
@@ -5,18 +6,20 @@ export class Reviewer {
     public number: string;
     public name: string;
     public email: string;
-    public InvitationDate: Date
+    public positionId: number;
+    public invitationDate: number
 
     static parse(json: any): Reviewer {
-        return new Reviewer(json.Id, json.Name, json.Email, json.Number, json.InvitationDate);
+        return new Reviewer(json.Id, json.Name, json.Email, json.Number, json.InvitationDate, json.PositionId);
     }
 
-    constructor(id?: number, name?: string, Email?: string, number?: string, InvitationDate?: number) {
+    constructor(id?: number, name?: string, Email?: string, number?: string, InvitationDate?: number, PositionId?: number) {
         this.id = id;
         this.name = name;
         this.email = Email;
         this.number = number;
-        this.InvitationDate = this.toDateTime(InvitationDate);
+        this.invitationDate = InvitationDate;
+        this.positionId = PositionId;
     }
 
     toDateTime(secs) {

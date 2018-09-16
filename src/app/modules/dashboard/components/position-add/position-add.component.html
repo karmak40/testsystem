@@ -39,6 +39,35 @@
 				</mat-form-field>
 			</div>
 
+			<div class="row">
+				<mat-form-field class="example-part2-width">
+					<textarea matInput mat-autosize="true" formControlName="instruction" placeholder="Instruction to this interview"> 
+						</textarea>
+				</mat-form-field>
+			</div>
+
+			<div class="row">
+
+				<div class="col-3">
+
+					<mat-form-field>
+						<input matInput [matDatepicker]="openDatepicker" formControlName="openDate" placeholder="Open Date">
+						<mat-datepicker-toggle matSuffix [for]="openDatepicker"></mat-datepicker-toggle>
+						<mat-datepicker #openDatepicker></mat-datepicker>
+					</mat-form-field>
+				</div>
+
+				<div class="col-3">
+
+					<mat-form-field>
+						<input matInput [matDatepicker]="closeDatepicker" formControlName="closeDate" placeholder="CloseDate Date">
+						<mat-datepicker-toggle matSuffix [for]="closeDatepicker"></mat-datepicker-toggle>
+						<mat-datepicker #closeDatepicker></mat-datepicker>
+					</mat-form-field>
+				</div>
+
+			</div>
+
 			<div>
 				<button color="primary" mat-raised-button matStepperNext>Next</button>
 			</div>
@@ -114,7 +143,7 @@
 
 					<table mat-table matSort [dataSource]="dataSourceCandidats">
 
-			
+
 						<!-- Name Column -->
 						<ng-container matColumnDef="name">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
