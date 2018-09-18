@@ -1,4 +1,5 @@
 import { Rating } from "./rating";
+import { Answer } from "./answer";
 
 export class Test {
     public id: number;
@@ -6,13 +7,11 @@ export class Test {
     public name: string;
     public time: number; 
     public positionId: number;
-    public answer: string;
-    public rating: Array<Rating>;
-
+    public answers: Array<Answer>;
 
     static parse(json: any): Test {
-        return new Test(json.Id, json.Name, json.Number, json.Answer, json.Time, json.PositionId, 
-            json.Rating.map());
+        return new Test(json.Id, json.Name, json.Number, json.Time, json.PositionId, 
+            json.Answers.map());
     }
 
     public constructor(
@@ -28,9 +27,8 @@ export class Test {
         this.number = number;
         this.name = Name;
         this.positionId = PositionId;
-        this.answer = Answer;
         this.time = Time
-        this.rating = []; 
+        this.answers = []  // answers; 
     }
 
     toDateTime(secs) {

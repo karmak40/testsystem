@@ -1,42 +1,27 @@
 export class Rating {
-    public id: string;
-    public viewer_id: number;
-    public nummer: number;
+
+    public id: number;
     public grade: number;
-    public test_id: string;
-}
+    public number: number;
+    public viewerId: number;
+    public answerId: number;
 
 
-/*
-    static parse(json: any): Candidat {
-        return new Candidat(json.Id, json.Name, json.Number, json.Email, json.InvitationDate, 
-            json.ExpiredDate, json.Phone, json.Tests.map(test => Test.parse(test)));
+    static parse(json: any): Rating {
+        return new Rating(json.Id, json.Grade, json.Number, json.ViewerId, json.answerId);
     }
 
     public constructor(
         id?: number,
-        Name?: string,
-        Number?: string,
-        Email?: string,
-        InvitationDate?: number,
-        ExpiredDate?: number,
-        Phone?: string,
-        Tests?: Test[],  
+        grade?: number,
+        number?: number,
+        viewerId?: number,
+        answerId?: number,
     ) {
         this.id = id;
-        this.number = Number;
-        this.name = Name;
-        this.email = Email;
-        this.invitationDate = this.toDateTime(InvitationDate) ;
-        this.expiredDate = this.toDateTime(ExpiredDate) ;
-        this.phone = Phone;
-        this.tests = Tests; 
+        this.grade = grade;
+        this.number = number
+        this.viewerId = viewerId;
+        this.answerId = answerId;
     }
-
-    toDateTime(secs) {
-        var t = new Date(1970, 0, 1); // Epoch
-        t.setSeconds(secs);
-        return t;
-    }
-
-*/
+}

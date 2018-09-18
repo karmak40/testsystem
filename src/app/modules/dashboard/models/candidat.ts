@@ -1,4 +1,5 @@
 import { Test } from "./test";
+import { Answer } from "./answer";
 
 export class Candidat {
     public id: number;
@@ -9,11 +10,11 @@ export class Candidat {
     public expiredDate: number
     public phone: string;
     public positionId;
-    public tests: Array<Test> 
+    public answers: Array<Answer> 
 
     static parse(json: any): Candidat {
         return new Candidat(json.Id, json.Name, json.Number, json.Email, json.InvitationDate, 
-            json.ExpiredDate, json.Phone, json.PositionId, json.Tests.map(test => Test.parse(test)));
+            json.ExpiredDate, json.Phone, json.PositionId, json.Answers.map(test => Answer.parse(test)));
     }
 
     public constructor(
@@ -25,7 +26,7 @@ export class Candidat {
         ExpiredDate?: number,
         Phone?: string,
         PositionId?: number,
-        Tests?: Test[],  
+        answers?: Answer[],  
     ) {
         this.id = id;
         this.number = Number;
@@ -35,7 +36,7 @@ export class Candidat {
         this.expiredDate = ExpiredDate;
         this.phone = Phone;
         this.positionId = PositionId;
-        this.tests = Tests; 
+        this.answers = answers; 
     }
 
     toDateTime(secs) {
