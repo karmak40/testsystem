@@ -179,8 +179,8 @@ export class PositionDetailComponent implements OnInit {
     this.position.name = this.firstFormGroup.value.name
     this.position.instruction = this.firstFormGroup.value.instruction
     this.position.number = this.firstFormGroup.value.number
-    this.position.openDate = this.getSeconds(this.firstFormGroup.value.openDate)
-    this.position.closeDate = this.getSeconds(this.firstFormGroup.value.closeDate)
+    this.position.openDate = this.getTimeInSeconds(this.firstFormGroup.value.openDatepickerTime, this.firstFormGroup.value.openDate);
+    this.position.closeDate = this.getTimeInSeconds(this.firstFormGroup.value.closeDatepickerTime, this.firstFormGroup.value.closeDate);
 
 
     JSON.stringify(this.position);
@@ -262,6 +262,19 @@ export class PositionDetailComponent implements OnInit {
     });
   }
 
+  private getTimeInSeconds(time: string, date: Date): number {
+    var res = time.split(':');
+    var hours = res[0]
+    var minutes = res[1]
+    
+    date.setHours(Number.parseInt(hours));
+    date.setMinutes(Number.parseInt(minutes));
+
+    console.log(date);
+   
+    return this.getSeconds(date);
+  }
+
 
 
   addReviever() {
@@ -304,7 +317,7 @@ export class PositionDetailComponent implements OnInit {
 
 
   getSeconds(date: Date): number {
-    var seconds = new Date().getTime() / 1000;
+    var seconds = date.getTime() / 1000;
     return seconds;
   }
 
@@ -321,7 +334,6 @@ export class PositionDetailComponent implements OnInit {
   private hideLoader() {
     this.loader = true;
   }
-
 
   public GetStringTime(seconds: number) {
     var t = new Date(1970, 0, 1); // Epoch
