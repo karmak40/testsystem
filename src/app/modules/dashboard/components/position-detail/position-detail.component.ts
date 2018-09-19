@@ -179,8 +179,13 @@ export class PositionDetailComponent implements OnInit {
     this.position.name = this.firstFormGroup.value.name
     this.position.instruction = this.firstFormGroup.value.instruction
     this.position.number = this.firstFormGroup.value.number
+<<<<<<< HEAD
     this.position.openDate = this.getTimeInSeconds(this.firstFormGroup.value.openDatepickerTime, this.firstFormGroup.value.openDate);
     this.position.closeDate = this.getTimeInSeconds(this.firstFormGroup.value.closeDatepickerTime, this.firstFormGroup.value.closeDate);
+=======
+    this.position.openDate = this.getTimeInSeconds(this.firstFormGroup.value.openDatepickerTime, this.firstFormGroup.value.openDate);      // this.getSeconds(this.firstFormGroup.value.openDate)
+    this.position.closeDate =  this.getTimeInSeconds(this.firstFormGroup.value.closeDatepickerTime, this.firstFormGroup.value.closeDate);  // this.getSeconds(this.firstFormGroup.value.closeDate)
+>>>>>>> 19a1fe18d3d9f4b9ecdf7b162ea3135747217f9e
 
 
     JSON.stringify(this.position);
@@ -198,8 +203,10 @@ export class PositionDetailComponent implements OnInit {
     this.dataSourceCandidats.filter = filterValue.trim()
   }
 
-  candidatDetail() {
-    this.router.navigate(['../candidat-detail'], { relativeTo: this.activatedRoute });
+  candidatDetail(candidat: any) {
+    console.log (candidat);
+    this.router.navigate(['../../candidat-detail', candidat.id], { relativeTo: this.activatedRoute });
+    //  this.router.navigate(['candidat-detail'], { relativeTo: this.activatedRoute });
   }
 
   addCandidat() {
@@ -248,6 +255,8 @@ export class PositionDetailComponent implements OnInit {
     test.name = question;
     test.time = 60 * (Number.parseInt(time));
     test.id = 0;
+    test.positionId = this.position.id;
+
     this.questions.push(test);
     console.log(test);
 
@@ -317,6 +326,10 @@ export class PositionDetailComponent implements OnInit {
 
 
   getSeconds(date: Date): number {
+<<<<<<< HEAD
+=======
+    console.log(date);
+>>>>>>> 19a1fe18d3d9f4b9ecdf7b162ea3135747217f9e
     var seconds = date.getTime() / 1000;
     return seconds;
   }
@@ -335,6 +348,23 @@ export class PositionDetailComponent implements OnInit {
     this.loader = true;
   }
 
+<<<<<<< HEAD
+=======
+  private getTimeInSeconds(time: string, date: Date): number {
+    var res = time.split(':');
+    var hours = res[0]
+    var minutes = res[1]
+
+    date.setHours(Number.parseInt(hours));
+    date.setMinutes(Number.parseInt(minutes));
+
+    console.log(date);
+   
+    return this.getSeconds(date);
+  }
+
+
+>>>>>>> 19a1fe18d3d9f4b9ecdf7b162ea3135747217f9e
   public GetStringTime(seconds: number) {
     var t = new Date(1970, 0, 1); // Epoch
     t.setSeconds(seconds);
