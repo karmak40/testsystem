@@ -6,7 +6,7 @@ import { ExaminationComponent } from './components/examination/examination.compo
 const routes: Routes = [
   {
     // todo add defauld page
-    path: '', component: ExaminationComponent,
+    path: ':id', component: ExaminationComponent,
     children: [
         
     ]
