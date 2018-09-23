@@ -1,0 +1,58 @@
+<div class="row">
+	<app-interview-header></app-interview-header>
+</div>
+
+
+<div class="container" *ngIf="showStartScreen" style="margin-top: 100px;">
+
+
+	<div class="row">
+		<p>
+			Practicing the basic interview questions is a good idea. Ask friends and family members to review the basic
+			questions with you. You need to prepare for different interview situations such as a panel interview where you will
+			be interviewed by several people instead of by just one person.
+
+			You need to make sure you make contact with each person you are speaking to throughout the interview. It is
+			important to feel comfortable in front of the group.
+
+			If you are in a group interview where you and several other candidates are being interviewed at the same time, you
+			should make sure that you volunteer answers for questions.
+
+			It is important that you have a unique answer that applies to your job skills and that you are not just echoing
+			someone else’s answers. This is a difficult interview because you need to be assertive without coming across as
+			being aggressive or rude.
+
+			In the interview you need a firm handshake, and make a personal connection with the person who is interviewing you.
+			Make sure you highlight any experience you have that they specifically listed in the job description.
+
+			Each answer should connect back to one of the strengths you can offer the company with an example of how you have
+			done it in the past. This is essential in the interview; you are selling yourself to the company. This means that it
+			is okay to highlight your strengths and talk about how they can benefit the company.
+		</p>
+
+	</div>
+
+	<div class="row">
+		<button mat-raised-button color="primary" (click)="startTest()">Start Test</button>
+	</div>
+	<div class="row">
+		<p>Warning: When you click on test you will have limited time available to do it! </p>
+	</div>
+
+</div>
+
+<div class="container" *ngIf="showTest" style="margin-top: 100px;">
+
+	<app-assesment [answers]="answers"></app-assesment>
+
+</div>
+
+
+<div *ngIf="!showStartScreen && !showTest" class="width2">
+
+	<p>Nothing here to see!!! </p>
+
+</div>
+
+
+<router-outlet></router-outlet>

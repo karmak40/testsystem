@@ -16,42 +16,45 @@ export class CandidatDetailComponent implements OnInit {
   public tests: Array<Test> = [];
   public viewers: Array<Reviewer> = [];
   public rating: Array<Rating> = [];
-
-  public candidat: Candidat;
+  public loader: boolean = true;
+  public candidat: Candidat = new Candidat();
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private candidatService: CandidatService) { }
 
   ngOnInit() {
 
 
-    
+    this.showLoader()
     this.activatedRoute.params.subscribe(params => {
       var candidatId = params['id'];
       if (candidatId !== undefined) {
-
         console.log('positionId', candidatId);
 
         this.loadCandidat(candidatId)
 
       }
+    }, (error) => {
+      this.hideLoader();
     });
-
   }
-
 
   loadCandidat(positionId: number): any {
+
     this.candidatService.get(positionId).subscribe(can => {
-        this.candidat = can;
-        console.log(this.candidat);
-    })
+      this.candidat = can;
+      this.hideLoader();
+      console.log(this.candidat);
+    }, (error) => {
+      this.hideLoader();
+    });
   }
 
-  goBack() { 
-    this.router.navigate(['../position-detail', this.candidat.positionId], { relativeTo: this.activatedRoute });
+  goBack() {
+    this.router.navigate(['../../position-detail', this.candidat.positionId], { relativeTo: this.activatedRoute });
   }
 
 
-  compare(a,b) {
+  compare(a, b) {
     if (a.nummer < b.nummer)
       return -1;
     if (a.nummer > b.nummer)
@@ -67,8 +70,16 @@ export class CandidatDetailComponent implements OnInit {
 
   public getSumeRate(viewer: Reviewer) {
     /*var res = this.tests.filter(test => test.rating.filter(rat => rat.viewerId == viewer.id))*/
-    
+
   }
-  
+
+  private showLoader() {
+    this.loader = false;
+  }
+
+  private hideLoader() {
+    this.loader = true;
+  }
+
 
 }

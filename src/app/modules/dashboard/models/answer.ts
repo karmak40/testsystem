@@ -6,12 +6,13 @@ export class Answer {
     public content: string;
     public candidatId: number;
     public testId: number;
+    public test: string;
     public reference: string;
     public rating: Array<Rating>;
 
 
     static parse(json: any): Answer {
-        return new Answer(json.Id, json.Content, json.CandidatId, json.TestId, json.Reference, json.Rating.map(rating => Rating.parse(rating)));
+        return new Answer(json.Id, json.Content, json.CandidatId, json.TestId, json.Reference, json.Test, json.Rating.map(rating => Rating.parse(rating)));
     }
 
     public constructor(
@@ -20,12 +21,14 @@ export class Answer {
         candidatId?: number,
         testId?: number,
         reference?: string,
+        test?: string,
         Rating?: Rating[],
     ) {
         this.id = id;
         this.content = content;
         this.testId = testId;
         this.reference = reference;
+        this.test = test;
         this.candidatId = candidatId;
         this.rating = Rating;
     }

@@ -13,7 +13,7 @@ export class CandidatService {
   constructor(private http: HttpClient, private url: UrlService) { }
 
   public addCandidat(json: string) {
-
+    
     return this.http.put<void>('./api/candidat/', json,
       { headers: this.url.getHttpHeaders() })
       .pipe(

@@ -1,0 +1,22 @@
+<div class="container">
+
+	<mat-list>
+
+		<div *ngFor="let item of answers">
+
+			<mat-list-item>{{item.test}}</mat-list-item>
+			<mat-divider></mat-divider>
+
+			<mat-form-field style="width:100%;">
+				<textarea matAutosizeMaxRows=5 matInput [(ngModel)]="item.content" placeholder="Type your answer here"></textarea>
+			</mat-form-field>
+
+
+		</div>
+	</mat-list>
+
+	<div class="row">
+		<button mat-raised-button (click)="send()" color="primary">Send</button>
+	</div>
+
+</div>

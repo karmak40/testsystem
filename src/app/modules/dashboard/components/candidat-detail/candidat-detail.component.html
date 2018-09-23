@@ -1,20 +1,22 @@
 <mat-toolbar>
-	Candidat Detail: Tom Cruse
+	Candidat Detail: {{candidat.name}}
 </mat-toolbar>
+<mat-progress-bar [hidden]="loader" mode="buffer"></mat-progress-bar>
 <button mat-button (click)="goBack()">Go Back</button>
 
 <div style="padding-left: 40px; padding-top:20px;">
 
 	<div class="row" style="width: 100%;">
 		<div class="col-6">
-			<div class="row" style="width: 100%;" *ngFor="let test of tests">
-				<div class="row" style="width: 100%;">{{test.name}}</div>
-				<div class="row" style="width: 100%;">
+			<div class="row" style="width: 100%;" *ngFor="let test of candidat.answers">
 
-					<textarea readonly matInput>{{test.answer}}</textarea>
+				<mat-list-item>{{test.test}}</mat-list-item>
+				<mat-divider></mat-divider>
 
-				</div>
-			
+				<mat-form-field style="width:100%;">
+					<textarea matAutosizeMaxRows=5 readonly matInput value="{{test.content}}"></textarea>
+				</mat-form-field>
+
 			</div>
 		</div>
 		<div class="col-6">

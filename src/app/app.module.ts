@@ -12,8 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './/app-routing.module';
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http'; 
-
 import { LoginModule } from './modules/login/login.module';
+
+
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { LoginModule } from './modules/login/login.module';
     NgbModule,
     FormsModule,
     AppRoutingModule,
-    LoginModule
+    LoginModule,
   ],
   exports: [MaterialModule],
   providers: [],
