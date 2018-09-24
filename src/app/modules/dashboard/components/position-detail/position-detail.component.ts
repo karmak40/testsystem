@@ -184,8 +184,6 @@ export class PositionDetailComponent implements OnInit {
     this.position.openDate = this.getTimeInSeconds(this.firstFormGroup.value.openDatepickerTime, this.firstFormGroup.value.openDate);
     this.position.closeDate = this.getTimeInSeconds(this.firstFormGroup.value.closeDatepickerTime, this.firstFormGroup.value.closeDate);
 
-
-    JSON.stringify(this.position);
     this.showLoader();
     this.positionService.updatePosition(JSON.stringify(this.position)).subscribe(_ => {
       this.hideLoader();

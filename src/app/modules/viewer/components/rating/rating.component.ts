@@ -8,6 +8,7 @@ import { Position } from '../../../dashboard/models/position';
 import { Reviewer } from '../../../dashboard/models/reviever';
 import { Candidat } from '../../../dashboard/models/candidat';
 import { Rating } from '../../../dashboard/models/rating';
+import { RatingService } from '../../services/rating.service';
 
 @Component({
   selector: 'app-rating',
@@ -26,11 +27,12 @@ export class RatingComponent implements OnInit {
 
     private positionService: PositionsService,
     private testService: TestService,
+    private ratingService: RatingService,
     private viewerService: ViewerService,
     private candidatService: CandidatService) { }
 
   ngOnInit() {
-   // this.rating = new Rating(undefined, undefined, undefined, undefined, undefined);
+    // this.rating = new Rating(undefined, undefined, undefined, undefined, undefined);
 
     this.showLoader();
     this.activatedRoute.params.subscribe(params => {
@@ -49,14 +51,14 @@ export class RatingComponent implements OnInit {
 
   loadCandidat(candidatId: any): any {
     this.candidatService.get(candidatId).subscribe(res => {
-      console.log ('-----------------------------------', res);
+      console.log('-----------------------------------', res);
       this.candidat = res;
 
       this.ratings = new Array<Rating>();
 
       this.candidat.answers.forEach(answ => {
 
-        var rat = new Rating(undefined,undefined,undefined, this.viewerId, answ.id);
+        var rat = new Rating(undefined, undefined, undefined, this.viewerId, answ.id);
         this.ratings.push(rat);
 
       });
@@ -68,7 +70,7 @@ export class RatingComponent implements OnInit {
   }
 
   public onChange() {
-   this.calculateFinalScore();
+    this.calculateFinalScore();
   }
 
   public calculateFinalScore() {
@@ -82,7 +84,14 @@ export class RatingComponent implements OnInit {
   }
 
   public send() {
-      console.log (this.ratings)
+    console.log(this.ratings)
+    var json = JSON.stringify(this.ratings);
+
+    this.ratingService.addRatings(json).subscribe(_ => {
+
+    }, (error) => {
+
+    });
   }
 
 

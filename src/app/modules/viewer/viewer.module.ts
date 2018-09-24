@@ -12,6 +12,7 @@ import { ViewerService } from '../dashboard/services/viewer.service';
 import { CandidatService } from '../dashboard/services/candidat.service';
 import { CandidatsListComponent } from './components/positions-list/positions-list.component';
 import { RatingComponent } from './components/rating/rating.component';
+import { RatingService } from './services/rating.service';
 
 @NgModule({
   imports: [
@@ -20,6 +21,6 @@ import { RatingComponent } from './components/rating/rating.component';
     MaterialModule
   ],
   declarations: [ExaminationComponent, CandidatsListComponent, RatingComponent],
-  providers: [InterviewService, HttpClient, UrlService, PositionsService, TestService, ViewerService, CandidatService]
+  providers: [InterviewService, HttpClient, UrlService, PositionsService, TestService, ViewerService, CandidatService, RatingService]
 })
 export class ViewerModule { }
