@@ -1,0 +1,62 @@
+<mat-toolbar *ngIf="loader">
+	{{candidat.number}}
+</mat-toolbar>
+<mat-progress-bar [hidden]="loader" mode="buffer"></mat-progress-bar>
+<button mat-button (click)="goBack()">Go Back</button>
+
+<div class="container" *ngIf="loader">
+
+	<div class="row">
+
+		<div class="col-8">
+
+			<mat-list>
+
+				<div *ngFor="let item of candidat.answers">
+
+					<mat-list-item> <b>{{item.test}} </b> </mat-list-item>
+					<mat-divider></mat-divider>
+
+					<mat-form-field style="width:100%;">
+						<textarea matAutosizeMaxRows=5 matInput [(ngModel)]="item.content"></textarea>
+					</mat-form-field>
+
+				</div>
+
+			</mat-list>
+
+		</div>
+
+	</div>
+
+
+	<p style="margin-top:1rem; margin-bottom:1rem;">
+		Grades:
+	</p>
+
+	<mat-list>
+
+		<div *ngFor="let item of ratings">
+
+			<mat-form-field>
+				<input matInput type="number" [(ngModel)]="item.grade" (input)="onChange()"  placeholder="Grade">
+			</mat-form-field>
+
+		</div>
+
+	</mat-list>
+
+
+	<div style="float: right;">
+		<mat-form-field>
+			<input matInput type="number" readonly placeholder="Final score" value="{{finalSum}}">
+		</mat-form-field>
+
+		<div class="row">
+			<button mat-raised-button (click)="send()" color="primary">Send</button>
+		</div>
+	</div>
+
+
+
+</div>

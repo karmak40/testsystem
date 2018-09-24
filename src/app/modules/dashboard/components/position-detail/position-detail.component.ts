@@ -74,6 +74,7 @@ export class PositionDetailComponent implements OnInit {
       name: ['', Validators.required],
       companyInfo: [''],
       instruction: [''],
+      availableTime: [''],
       openDate: [''],
       closeDate: [''],
       openDatepickerTime: [''],
@@ -157,6 +158,7 @@ export class PositionDetailComponent implements OnInit {
       openDatepickerTime: this.GetStringTime(this.position.openDate),
       closeDatepickerTime: this.GetStringTime(this.position.closeDate),
       name: this.position.name,
+      availableTime: (this.position.availableTime / 60).toString() ,
       number: this.position.number,
       companyInfo: this.position.companyInfo,
       instruction: this.position.instruction,
@@ -243,11 +245,11 @@ export class PositionDetailComponent implements OnInit {
     console.log(this.dataSourceCandidats.data);
   }
 
-  addQuestions(question: string, time: string) {
+  addQuestions(question: string) {
 
     var test = new Test();
     test.name = question;
-    test.time = 60 * (Number.parseInt(time));
+    test.time = this.position.availableTime;
     test.id = 0;
     test.positionId = this.position.id;
 

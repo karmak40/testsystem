@@ -15,8 +15,8 @@ import { Reviewer } from '../../../dashboard/models/reviever';
 export class ExaminationComponent implements OnInit {
 
   loader: boolean;
-  public position: Position;
-  public viewer: Reviewer;
+ // public position: Position;
+  //public viewer: Reviewer;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
     private positionService: PositionsService,
@@ -28,36 +28,17 @@ export class ExaminationComponent implements OnInit {
 
     this.showLoader();
     this.activatedRoute.params.subscribe(params => {
-      var viewerId = params['id'];
+      var viewerId = params['viewerId'];
       console.log (viewerId);
       if (viewerId !== undefined) {
-        this.loadViewer(viewerId);
+        this.hideLoader();
+        this.router.navigate(['candidat-list', viewerId], { relativeTo: this.activatedRoute });
       }
     }, error => {
       this.hideLoader();
     });
   }
-
-  loadViewer(viewerId: any): any {
-    this.viewerService.getViewer(viewerId).subscribe(res => {
-      this.viewer = res;
-      console.log ( this.viewer);
-      var positionId = this.viewer.positionId;
-      this.loadPosition(positionId);
-      this.hideLoader();
-    },
-      error => {
-        this.hideLoader();
-      });
-  }
-
-  loadPosition(positionId: number): any {
-    this.positionService.getPositionDetail(positionId).subscribe(position => {
-      this.hideLoader();
-      this.position = position;
-      console.log (this.position);
-    });
-  }
+ 
 
   private showLoader() {
     this.loader = false;

@@ -1,3 +1,22 @@
-<p>
-  positions-list works!
-</p>
+<mat-toolbar *ngIf="loader">
+  {{position.name}}
+</mat-toolbar>
+<mat-progress-bar [hidden]="loader" mode="buffer"></mat-progress-bar>
+
+<div class="container" *ngIf="loader">
+
+
+  <mat-list role="list">
+
+    <div *ngFor="let cand of position.candidats">
+
+      <mat-list-item role="listitem"> <button (click)="rateCandidat(cand)" mat-button>{{cand.number}}</button></mat-list-item>
+      <mat-divider></mat-divider>
+
+    </div>
+
+  </mat-list>
+
+
+
+</div>

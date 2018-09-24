@@ -28,7 +28,8 @@
 
 			<div class="row">
 				<mat-form-field class="example-part2-width">
-					<textarea matInput mat-autosize="true" formControlName="about" placeholder="About this interview"> 
+					<textarea matInput mat-autosize="true" formControlName="about" placeholder="About this interview">
+
 					</textarea>
 				</mat-form-field>
 			</div>
@@ -36,14 +37,29 @@
 			<div class="row">
 				<mat-form-field class="example-part2-width">
 					<textarea matInput mat-autosize="true" formControlName="companyInfo" placeholder="Company Information">
+
 					</textarea>
 				</mat-form-field>
 			</div>
 
 			<div class="row">
 				<mat-form-field class="example-part2-width">
-					<textarea matInput mat-autosize="true" formControlName="instruction" placeholder="Instruction to this interview"> 
+					<textarea matInput mat-autosize="true" formControlName="instruction" placeholder="Instruction to this interview">
+
 						</textarea>
+				</mat-form-field>
+			</div>
+
+			<div class="row">
+				<mat-form-field>
+					<mat-select #time placeholder="Available time" required formControlName="availableTime">
+						<mat-option value="60">
+							60
+						</mat-option>
+						<mat-option value="90">
+							90
+						</mat-option>
+					</mat-select>
 				</mat-form-field>
 			</div>
 
@@ -110,20 +126,21 @@
 			<div class="row" style="padding-left: 20px; padding-right: 40px;">
 				<div class="col">
 					<mat-form-field>
-						<input matInput placeholder="Name" formControlName="name" required>
+						<input matInput placeholder="Name" formControlName="name">
 					</mat-form-field>
 				</div>
 				<div class="col">
 					<mat-form-field class="example-full-width">
 						<input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
 						<mat-icon matSuffix>email</mat-icon>
-						<mat-hint>Errors appear instantly!</mat-hint>
-						<mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-							Please enter a valid email address
-						</mat-error>
-						<mat-error *ngIf="emailFormControl.hasError('required')">
-							Email is <strong>required</strong>
-						</mat-error>
+						<mat-hint>Errors appear instantly!</mat-hint>		
+					</mat-form-field>
+				</div>
+
+				<div class="col">
+					<mat-form-field class="example-full-width">
+						<input type="tel" formControlName="number" matInput placeholder="Number">
+						<mat-icon matSuffix>phone</mat-icon>
 					</mat-form-field>
 				</div>
 
@@ -229,19 +246,7 @@
 			</div>
 
 			<div class="col-3">
-				<button mat-fab color="primary" (click)="addQuestions(question.value, time.value)">Add</button>
-			</div>
-			<div class="col-3">
-				<mat-form-field>
-					<mat-select #time placeholder="Available time">
-						<mat-option value="60">
-							60
-						</mat-option>
-						<mat-option value="90">
-							90
-						</mat-option>
-					</mat-select>
-				</mat-form-field>
+				<button mat-fab color="primary" (click)="addQuestions(question.value)">Add</button>
 			</div>
 		</div>
 		<div class="row">

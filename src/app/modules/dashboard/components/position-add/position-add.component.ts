@@ -33,6 +33,7 @@ export class PositionAddComponent implements OnInit {
   public positionId: number;
   public loader: boolean = true;
   public position: Position;
+  public time: string;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -80,6 +81,7 @@ export class PositionAddComponent implements OnInit {
       companyInfo: [''],
       instruction: [''],
       openDate: [''],
+      availableTime: [''],
       closeDate: [''],
       openDatepickerTime: [''],
       closeDatepickerTime: [''],
@@ -89,6 +91,7 @@ export class PositionAddComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', Validators.required],
       invitationDate: [''],
+      number: [''],
       expiredDate: [''],
       phone: ['']
     });
@@ -113,6 +116,7 @@ export class PositionAddComponent implements OnInit {
     candidat.email = this.secondFormGroup.value.email;
     candidat.name = this.secondFormGroup.value.name;
     candidat.phone = this.secondFormGroup.value.phone;
+    candidat.number = this.secondFormGroup.value.number;
 
     candidat.expiredDate = this.getSeconds(this.secondFormGroup.value.expiredDate);
     candidat.invitationDate = this.getSeconds(this.secondFormGroup.value.invitationDate);
@@ -150,13 +154,14 @@ export class PositionAddComponent implements OnInit {
 
   }
 
-  addQuestions(question: string, time: string) {
+  addQuestions(question: string) {
 
     this.showLoader();
     var test = new Test();
     test.name = question;
     test.positionId = this.position.id;
-    test.time = 60 * (Number.parseInt(time));
+    console.log('Time!!!!!!!!!!!',this.time)
+    test.time = 60 * (Number.parseInt(this.time));
     this.questions.push(test);
 
     console.log (test);
@@ -189,6 +194,9 @@ export class PositionAddComponent implements OnInit {
     this.position.number = this.firstFormGroup.value.number;
     this.position.openDate = this.getTimeInSeconds(this.firstFormGroup.value.openDatepickerTime, this.firstFormGroup.value.openDate);
     this.position.closeDate = this.getTimeInSeconds(this.firstFormGroup.value.closeDatepickerTime, this.firstFormGroup.value.closeDate);
+  
+    this.time = this.firstFormGroup.value.availableTime;
+    this.position.availableTime = 60 * (Number.parseInt(this.time));
 
     console.log(this.firstFormGroup.value.openDate);
 
