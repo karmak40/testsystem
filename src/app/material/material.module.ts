@@ -29,6 +29,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
         MatTooltipModule,
         MatSortModule,
         MatTableModule,
+        MatDialogModule,
         MatPaginatorModule,
         MatProgressBarModule,
         MatStepperModule,
@@ -66,6 +68,7 @@ import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
         MatIconModule,
         MatInputModule,
         MatSelectModule,
+        MatDialogModule,
         MatGridListModule,
         MatListModule,
         MatMenuModule,

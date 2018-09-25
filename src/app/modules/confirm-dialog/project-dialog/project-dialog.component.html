@@ -1,0 +1,37 @@
+<p>Adding new Project</p>
+
+
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Project Name" [(ngModel)]="inputdata.name"  value="">
+</mat-form-field>
+
+<div class="row">
+    <div class="col">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Start" type="date" [(ngModel)]="inputdata.start">
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="End" type="date" [(ngModel)]="inputdata.end">
+      </mat-form-field>
+    </div>
+</div>
+
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Probability" type="number" [(ngModel)]="inputdata.prob" value="100">
+</mat-form-field>
+
+<mat-form-field>
+  <mat-select placeholder="Projectstufe" [(ngModel)]="inputdata.stufe">
+    <mat-option *ngFor="let stuf of stufen" [value]="stuf">
+      {{stuf}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+<button type="button" mat-button 
+    (click)="dialogRef.close()">Abbrechen</button>
+<button type="button" mat-raised-button 
+    (click)="dialogRef.close(inputdata)">Speichern</button>

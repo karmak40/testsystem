@@ -13,6 +13,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http'; 
 import { LoginModule } from './modules/login/login.module';
+import { DialogsModule } from './modules/confirm-dialog/dialogs.module';
 
 
 
@@ -29,6 +30,7 @@ import { LoginModule } from './modules/login/login.module';
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
     BrowserAnimationsModule,
     ReactiveFormsModule, 
+    DialogsModule,
     HttpClientModule,
     MaterialModule,
     NgbModule,

@@ -8,11 +8,11 @@ export class Answer {
     public testId: number;
     public test: string;
     public reference: string;
-    public rating: Array<Rating>;
+    public ratings: Array<Rating>;
 
 
     static parse(json: any): Answer {
-        return new Answer(json.Id, json.Content, json.CandidatId, json.TestId, json.Reference, json.Test, json.Rating.map(rating => Rating.parse(rating)));
+        return new Answer(json.Id, json.Content, json.CandidatId, json.TestId, json.Reference, json.Test, json.Ratings.map(rating => Rating.parse(rating)));
     }
 
     public constructor(
@@ -22,7 +22,7 @@ export class Answer {
         testId?: number,
         reference?: string,
         test?: string,
-        Rating?: Rating[],
+        Ratings?: Rating[],
     ) {
         this.id = id;
         this.content = content;
@@ -30,7 +30,7 @@ export class Answer {
         this.reference = reference;
         this.test = test;
         this.candidatId = candidatId;
-        this.rating = Rating;
+        this.ratings = Ratings;
     }
 
     toDateTime(secs) {

@@ -10,9 +10,17 @@
 
     <div *ngFor="let cand of position.candidats">
 
-      <mat-list-item role="listitem"> <button (click)="rateCandidat(cand)" mat-button>{{cand.number}}</button></mat-list-item>
-      <mat-divider></mat-divider>
+      <div class="row">
+        <div class="col">
+          <mat-list-item role="listitem"> <button (click)="rateCandidat(cand)" mat-button>{{cand.number}}</button></mat-list-item>
+        </div>
 
+        <div class="col">
+          <mat-list-item role="listitem"> Status </mat-list-item>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+     
     </div>
 
   </mat-list>
