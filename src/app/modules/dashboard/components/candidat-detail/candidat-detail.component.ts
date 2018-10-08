@@ -5,6 +5,7 @@ import { Rating } from '../../models/rating';
 import { Reviewer } from '../../models/reviever';
 import { CandidatService } from '../../services/candidat.service';
 import { Candidat } from '../../models/candidat';
+import { PositionsService } from '../../services/positions.service';
 
 @Component({
   selector: 'app-candidat-detail',
@@ -19,16 +20,15 @@ export class CandidatDetailComponent implements OnInit {
   public loader: boolean = true;
   public candidat: Candidat = new Candidat();
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private candidatService: CandidatService) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private candidatService: CandidatService, private positionService: PositionsService) { }
 
   ngOnInit() {
-
 
     this.showLoader()
     this.activatedRoute.params.subscribe(params => {
       var candidatId = params['id'];
       if (candidatId !== undefined) {
-        console.log('positionId', candidatId);
+        console.log('candidatId', candidatId);
 
         this.loadCandidat(candidatId)
 
@@ -38,13 +38,20 @@ export class CandidatDetailComponent implements OnInit {
     });
   }
 
-  loadCandidat(positionId: number): any {
+  loadCandidat(candidatId: number): any {
 
-    this.candidatService.get(positionId).subscribe(can => {
+    this.candidatService.get(candidatId).subscribe(can => {
       this.candidat = can;
-      this.hideLoader();
+      this.loadPosition(this.candidat.positionId);
       console.log(this.candidat);
     }, (error) => {
+      this.hideLoader();
+    });
+  }
+
+  loadPosition(positionId: number) {
+    this.positionService.getPositionDetail(positionId).subscribe(position => {
+      this.viewers = position.viewers;
       this.hideLoader();
     });
   }
@@ -52,7 +59,6 @@ export class CandidatDetailComponent implements OnInit {
   goBack() {
     this.router.navigate(['../../position-detail', this.candidat.positionId], { relativeTo: this.activatedRoute });
   }
-
 
   compare(a, b) {
     if (a.nummer < b.nummer)
@@ -70,7 +76,6 @@ export class CandidatDetailComponent implements OnInit {
 
   public getSumeRate(viewer: Reviewer) {
     /*var res = this.tests.filter(test => test.rating.filter(rat => rat.viewerId == viewer.id))*/
-
   }
 
   private showLoader() {

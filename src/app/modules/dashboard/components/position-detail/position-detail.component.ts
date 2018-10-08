@@ -112,10 +112,12 @@ export class PositionDetailComponent implements OnInit {
 
     this.showLoader();
     this.positionService.getPositionDetail(id).subscribe(position => {
-      this.hideLoader();
 
       this.position = position;
 
+      
+
+      this.hideLoader();
       if (position.viewers !== null) {
         this.viewerDatabase = position.viewers;
       }
@@ -137,9 +139,9 @@ export class PositionDetailComponent implements OnInit {
       this.dataSourceViewers = new MatTableDataSource<Reviewer>(this.viewerDatabase)
       this.dataSourceViewers.paginator = this.paginator;
       this.dataSourceViewers.sort = this.sort;
-
+     
       console.log(position)
-
+     
     }, (error) => {
       this.hideLoader();
       //this.errorMessageOn(error.message)

@@ -32,7 +32,7 @@ export class CandidatsListComponent implements OnInit {
     this.showLoader();
     this.activatedRoute.params.subscribe(params => {
       var viewerId = params['viewerId'];
-      console.log (viewerId);
+    //  console.log (viewerId);
       if (viewerId !== undefined) {
        
         this.loadViewer(viewerId);
@@ -46,7 +46,7 @@ export class CandidatsListComponent implements OnInit {
   loadViewer(viewerId: any): any {
     this.viewerService.getViewer(viewerId).subscribe(res => {
       this.viewer = res;
-      console.log ( this.viewer);
+    //  console.log ( this.viewer);
       var positionId = this.viewer.positionId;
       this.loadPosition(positionId);
      
@@ -60,7 +60,7 @@ export class CandidatsListComponent implements OnInit {
     this.positionService.getPositionDetail(positionId).subscribe(position => {
       this.hideLoader();
       this.position = position;
-      console.log (this.position);
+     // console.log (this.position);
     });
   }
 

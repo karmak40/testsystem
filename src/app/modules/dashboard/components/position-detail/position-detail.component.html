@@ -58,7 +58,7 @@
 					</div>
 				</div>
 
-			
+
 
 				<div style="padding-left: 20px; padding-right: 20px;">
 
@@ -76,10 +76,10 @@
 								<th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
 								<td mat-cell *matCellDef="let element"> <button (click)="candidatDetail(element)" mat-button>{{element.name}}</button>
 								</td>
-						
+
 							</ng-container>
 
-						
+
 
 							<!-- email Column -->
 							<ng-container matColumnDef="email">
@@ -155,7 +155,8 @@
 
 					<div class="col">
 						<mat-form-field>
-							<input matInput [matDatepicker]="revieversInvitationDatepicker" formControlName="revieversInvitationDatepicker" placeholder="Invitation Date">
+							<input matInput [matDatepicker]="revieversInvitationDatepicker" formControlName="revieversInvitationDatepicker"
+							 placeholder="Invitation Date">
 							<mat-datepicker-toggle matSuffix [for]="revieversInvitationDatepicker"></mat-datepicker-toggle>
 							<mat-datepicker #revieversInvitationDatepicker></mat-datepicker>
 						</mat-form-field>
@@ -245,7 +246,7 @@
 				<div class="col-3">
 					<button mat-fab color="primary" (click)="addQuestions(question.value)">Add</button>
 				</div>
-				
+
 			</div>
 			<div class="row">
 				<mat-toolbar>
@@ -293,37 +294,43 @@
 
 				<div class="row">
 					<mat-form-field class="example-part2-width">
-						<textarea matInput mat-autosize="true" matAutosizeMinRows=1 matAutosizeMaxRows=5 formControlName="about" placeholder="About this interview"> 
+						<textarea matInput mat-autosize="true" matAutosizeMinRows=1 matAutosizeMaxRows=5 formControlName="about"
+						 placeholder="About this interview">
+
 					</textarea>
 					</mat-form-field>
 				</div>
 
 				<div class="row">
 					<mat-form-field class="example-part2-width">
-						<textarea matInput mat-autosize="true" matAutosizeMinRows=1 matAutosizeMaxRows=5 formControlName="companyInfo" placeholder="Company Information">
+						<textarea matInput mat-autosize="true" matAutosizeMinRows=1 matAutosizeMaxRows=5 formControlName="companyInfo"
+						 placeholder="Company Information">
+
 					</textarea>
 					</mat-form-field>
 				</div>
 
 				<div class="row">
 					<mat-form-field class="example-part2-width">
-						<textarea matInput mat-autosize="true" matAutosizeMinRows=1 matAutosizeMaxRows=5 formControlName="instruction" placeholder="Instruction to this interview"> 
+						<textarea matInput mat-autosize="true" matAutosizeMinRows=1 matAutosizeMaxRows=5 formControlName="instruction"
+						 placeholder="Instruction to this interview">
+
 						</textarea>
 					</mat-form-field>
 				</div>
 
 				<div class="row">
-						<mat-form-field>
-							<mat-select #time placeholder="Available time" required formControlName="availableTime">
-								<mat-option value="60">
-									60
-								</mat-option>
-								<mat-option value="90">
-									90
-								</mat-option>
-							</mat-select>
-						</mat-form-field>
-					</div>
+					<mat-form-field>
+						<mat-select #time placeholder="Available time" required formControlName="availableTime">
+							<mat-option value="60">
+								60
+							</mat-option>
+							<mat-option value="90">
+								90
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
 
 
 				<div class="row">
@@ -382,8 +389,8 @@
 
 	<mat-tab label="Big Picture">
 
-
-		<app-big-picture></app-big-picture>
+	
+		<app-big-picture [position]="position" *ngIf="loader"> </app-big-picture>
 
 
 	</mat-tab>
@@ -391,4 +398,3 @@
 
 
 </mat-tab-group>
-

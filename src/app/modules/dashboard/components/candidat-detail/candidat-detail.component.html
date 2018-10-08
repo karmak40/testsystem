@@ -23,26 +23,24 @@
 
 			<div class="row">
 				<div class="col">
-					Question
+					<b> Test </b>
 				</div>
-				<div class="col" *ngFor="let item of viewers">
-					{{item.name}}
+				<div class="col" *ngFor="let viewer of viewers">
+					<b> {{viewer.name}}</b>
 				</div>
 			</div>
 
-			<div *ngFor="let test of tests">
-				<div class="row">
-					<div class="col">{{test.number}}</div>
 
-					<div class="col" *ngFor="let viewer of viewers">
-						{{getCorrectRate(test, viewer)}}
-					</div>
-
+			<div class="row" *ngFor="let answer of candidat.answers">
+				<div class="col">
+					{{answer.test}}
 				</div>
 
-				<mat-divider></mat-divider>
-			</div>
+				<div class="col" *ngFor="let rating of answer.ratings">
+					{{rating.grade}}
+				</div>
 
+			</div>
 
 		</div>
 	</div>
